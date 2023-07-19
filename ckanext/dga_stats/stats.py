@@ -421,6 +421,60 @@ class Stats(object):
         return res
 
 
+    @classmethod
+    def activity_counts_year(cls):
+        def fetch_activity_counts_year():
+            connection = model.Session.connection()
+            sql = '''
+            SELECT to_char(tracking_summary.tracking_date, 'YYYY') AS dateyear, title, count(*) AS total 
+            FROM public.tracking_summary LEFT JOIN public.package ON public.tracking_summary.package_id = public.package.id 
+            WHERE title IS NOT NULL 
+            GROUP BY to_char(tracking_summary.tracking_date, 'YYYY'), public.package.title; 
+            '''
+            result = connection.execute(sql).fetchall()
+            
+            return result
+            
+        res = fetch_activity_counts_year()
+
+        return res
+
+    @classmethod
+    def activity_counts_month(cls):
+        def fetch_activity_counts_month():
+            connection = model.Session.connection()
+            sql = '''
+            SELECT to_char(tracking_summary.tracking_date, 'YYYY-MM') AS datemonth, title, count(*) AS total 
+            FROM public.tracking_summary LEFT JOIN public.package ON public.tracking_summary.package_id = public.package.id 
+            WHERE title IS NOT NULL 
+            GROUP BY to_char(tracking_summary.tracking_date, 'YYYY-MM'), public.package.title; 
+            '''
+            result = connection.execute(sql).fetchall()
+            
+            return result
+            
+        res = fetch_activity_counts_month()
+
+        return res
+
+    @classmethod
+    def activity_counts_day(cls):
+        def fetch_activity_counts_day():
+            connection = model.Session.connection()
+            sql = '''
+            SELECT to_char(tracking_summary.tracking_date, 'YYYY-MM-DD') AS dateday, title, count(*) AS total 
+            FROM public.tracking_summary LEFT JOIN public.package ON public.tracking_summary.package_id = public.package.id 
+            WHERE title IS NOT NULL 
+            GROUP BY to_char(tracking_summary.tracking_date, 'YYYY-MM-DD'), public.package.title; 
+            '''
+            result = connection.execute(sql).fetchall()
+            
+            return result
+            
+        res = fetch_activity_counts_day()
+
+        return res
+
 # class RevisionStats(object):
 #     @classmethod
 #     def package_addition_rate(cls, weeks_ago=0):

@@ -79,7 +79,7 @@
           <p class="empty">{{ _('No changes in the last %s days' | format(c.recent_period)) }}</p>
           {% endif %}
       </section>
-      {% if h.check_access('sysadmin') %}
+           {% if h.check_access('sysadmin') %}
       <section id="stats-user-access-list" class="module-content tab-content">
           <h2>{{ _('User Access List') }}</h2>
           {% if c.user_access_list %}
@@ -406,6 +406,99 @@
         <p class="empty">{{ _('No groups') }}</p>
       {% endif %}
     </section>
+
+    <section id="activity-count-by-year" class="module-content tab-content">
+        <h2>{{ _('Data Usage by Year') }}</h2>
+        {% if c.activity_counts_year %}
+        <a style="float:right; margin-bottom: 10px;" class="btn" href="#" onClick="$('#activity-count-by-year').tableExport({type:'csv', tableName:'activity-count-by-year', escape:'false'});">Export as CSV</a>
+        <table class="table table-chunky table-bordered table-striped" id="activity-count-by-year">
+            <thead>
+                <tr>
+                    <th>{{ _('Date') }}</th>
+                    <th>{{ _('Dataset') }}</th>
+                    {% if h.check_access('sysadmin') %}
+                    <th>{{ _('Total') }}</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for res in c.activity_counts_year %}
+                <tr>
+                    <td>{{ res.dateyear }}</td>
+                    <td>{{ res.title }}</td>
+                    {% if h.check_access('sysadmin') %}
+                    <td>{{ res.total }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty"></p>
+        {% endif %}
+    </section>
+
+    <section id="activity-count-by-month" class="module-content tab-content">
+      <h2>{{ _('Data Usage by Month') }}</h2>
+      {% if c.activity_counts_month %}
+      <a style="float:right; margin-bottom: 10px;" class="btn" href="#" onClick="$('#activity-count-by-month').tableExport({type:'csv', tableName:'activity-count-by-month', escape:'false'});">Export as CSV</a>
+      <table class="table table-chunky table-bordered table-striped" id="activity-count-by-month">
+          <thead>
+              <tr>
+                  <th>{{ _('Date') }}</th>
+                  <th>{{ _('Dataset') }}</th>
+                  {% if h.check_access('sysadmin') %}
+                  <th>{{ _('Total') }}</th>
+                  {% endif %}
+              </tr>
+          </thead>
+          <tbody>
+              {% for res in c.activity_counts_month %}
+              <tr>
+                  <td>{{ res.datemonth }}</td>
+                  <td>{{ res.title }}</td>
+                  {% if h.check_access('sysadmin') %}
+                  <td>{{ res.total }}</td>
+                  {% endif %}
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      {% else %}
+      <p class="empty"></p>
+      {% endif %}
+  </section>
+
+  <section id="activity-count-by-day" class="module-content tab-content">
+    <h2>{{ _('Data Usage by Day') }}</h2>
+    {% if c.activity_counts_day %}
+    <a style="float:right; margin-bottom: 10px;" class="btn" href="#" onClick="$('#activity-count-by-day').tableExport({type:'csv', tableName:'activity-count-by-day', escape:'false'});">Export as CSV</a>
+    <table class="table table-chunky table-bordered table-striped" id="activity-count-by-day">
+        <thead>
+            <tr>
+                <th>{{ _('Date') }}</th>
+                <th>{{ _('Dataset') }}</th>
+                {% if h.check_access('sysadmin') %}
+                <th>{{ _('Total') }}</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in c.activity_counts_day %}
+            <tr>
+                <td>{{ res.dateday }}</td>
+                <td>{{ res.title }}</td>
+                {% if h.check_access('sysadmin') %}
+                <td>{{ res.total }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty"></p>
+    {% endif %}
+  </section>
   </article>
 {% endblock %}
 
@@ -430,6 +523,11 @@
         <li class="nav-item"><a href="#stats-top-tags" data-toggle="tab">{{ _('Top Tags') }}</a></li>        
         <!--<li class="nav-item"><a href="#stats-activity-org" data-toggle="tab">{{ _('Most Active Organizations') }}</a></li>-->
         <!--<li class="nav-item"><a href="/site-usage">Site Analytics</a></li>-->
+
+        <li class="nav-item"><a href="#activity-count-by-year" data-toggle="tab">{{ _('Data Usage by Year') }}</a></li>
+        <li class="nav-item"><a href="#activity-count-by-month" data-toggle="tab">{{ _('Data Usage by Month') }}</a></li>
+        <li class="nav-item"><a href="#activity-count-by-day" data-toggle="tab">{{ _('Data Usage by Day') }}</a></li>
+
         <li class="nav-item active"><a href="#stats-summary" data-toggle="tab">{{ _('Summary Statistic') }}</a></li>
       </ul>
     </nav>
