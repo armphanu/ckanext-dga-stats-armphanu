@@ -46,7 +46,7 @@
       {% endif %}
     </section>
       <section id="stats-recent-updated-datasets" class="module-content tab-content">
-          <h2>{{ _('Recently Updated Datasets') }}</h2>
+          <h2>รายงานประวัติการปรับปรุงการให้บริการ</h2>
           {% if c.recent_updated_datasets %}
           <a style="float:right;   margin-bottom: 10px;" class="btn" href="#" onClick ="$('#recent-updated-datasets').tableExport({type:'csv', tableName:'recently-updated-datasets', escape:'false'});">Export as CSV</a>
           <!--<a style="float:right;   margin-bottom: 10px;   margin-right: 10px;" class="btn btn-excel" href="#"
@@ -408,7 +408,7 @@
     </section>
 
     <section id="activity-count-by-year" class="module-content tab-content">
-        <h2>{{ _('Data Usage by Year') }}</h2>
+        <h2>รายงานประวัติการเรียกใช้ข้อมูล รายปี</h2>
         {% if c.activity_counts_year %}
         <a style="float:right; margin-bottom: 10px;" class="btn" href="#" onClick="$('#activity-count-by-year').tableExport({type:'csv', tableName:'activity-count-by-year', escape:'false'});">Export as CSV</a>
         <table class="table table-chunky table-bordered table-striped" id="activity-count-by-year">
@@ -439,7 +439,7 @@
     </section>
 
     <section id="activity-count-by-month" class="module-content tab-content">
-      <h2>{{ _('Data Usage by Month') }}</h2>
+      <h2>รายงานประวัติการเรียกใช้ข้อมูล รายเดือน</h2>
       {% if c.activity_counts_month %}
       <a style="float:right; margin-bottom: 10px;" class="btn" href="#" onClick="$('#activity-count-by-month').tableExport({type:'csv', tableName:'activity-count-by-month', escape:'false'});">Export as CSV</a>
       <table class="table table-chunky table-bordered table-striped" id="activity-count-by-month">
@@ -470,7 +470,7 @@
   </section>
 
   <section id="activity-count-by-day" class="module-content tab-content">
-    <h2>{{ _('Data Usage by Day') }}</h2>
+    <h2>รายงานประวัติการเรียกใช้ข้อมูล รายวัน</h2>
     {% if c.activity_counts_day %}
     <a style="float:right; margin-bottom: 10px;" class="btn" href="#" onClick="$('#activity-count-by-day').tableExport({type:'csv', tableName:'activity-count-by-day', escape:'false'});">Export as CSV</a>
     <table class="table table-chunky table-bordered table-striped" id="activity-count-by-day">
@@ -524,9 +524,9 @@
         <!--<li class="nav-item"><a href="#stats-activity-org" data-toggle="tab">{{ _('Most Active Organizations') }}</a></li>-->
         <!--<li class="nav-item"><a href="/site-usage">Site Analytics</a></li>-->
 
-        <li class="nav-item"><a href="#activity-count-by-year" data-toggle="tab">{{ _('Data Usage by Year') }}</a></li>
-        <li class="nav-item"><a href="#activity-count-by-month" data-toggle="tab">{{ _('Data Usage by Month') }}</a></li>
-        <li class="nav-item"><a href="#activity-count-by-day" data-toggle="tab">{{ _('Data Usage by Day') }}</a></li>
+        <li class="nav-item"><a href="#activity-count-by-year" data-toggle="tab">รายงานประวัติการเรียกใช้ข้อมูล รายปี</a></li>
+        <li class="nav-item"><a href="#activity-count-by-month" data-toggle="tab">รายงานประวัติการเรียกใช้ข้อมูล รายเดือน</a></li>
+        <li class="nav-item"><a href="#activity-count-by-day" data-toggle="tab">รายงานประวัติการเรียกใช้ข้อมูล รายวัน</a></li>
 
         <li class="nav-item active"><a href="#stats-summary" data-toggle="tab">{{ _('Summary Statistic') }}</a></li>
       </ul>
